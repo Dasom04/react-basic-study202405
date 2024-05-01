@@ -8,4 +8,4 @@ const NoName = () => {
   )
 }
 
-export default NoName
+export default NoName;
