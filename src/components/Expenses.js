@@ -1,27 +1,28 @@
-import React from 'react'
+import React from 'react';
+import ExpenseItem from './ExpenseItem';
+import './Expenses.css';
 
-const Expenses = (items: expenses) => {
+const Expenses = ({ items }) => {
   return (
-    <div className='expenseItems'>
-  <ExpenseItem 
-    title={expenses[0].title} 
-    price={expenses[0].price} 
-    date={expenses[0].date} 
-    />
-  
-     <ExpenseItem 
-     title={expenses[1].title} 
-     price={expenses[1].price} 
-     date={expenses[1].date} 
-     />
-     <ExpenseItem 
-     title={expenses[2].title} 
-     price={expenses[2].price} 
-     date={expenses[2].date} 
-     />
+    <div className="expenses">
+      <ExpenseItem
+        title={items[0].title}
+        price={items[0].price}
+        date={items[0].date}
+      />
+
+      <ExpenseItem
+        title={items[1].title}
+        price={items[1].price}
+        date={items[1].date}
+      />
+      <ExpenseItem
+        title={items[2].title}
+        price={items[2].price}
+        date={items[2].date}
+      />
     </div>
-    
   );
-}
+};
 
 export default Expenses;
