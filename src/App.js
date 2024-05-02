@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import Hello from './Hello';
 import Expenses from './components/Expenses';
 
 function App() {
@@ -27,13 +26,6 @@ function App() {
   return (
     <>
       <Expenses items={expenses} />
-      <Hello>
-        <ul>
-          <li>사과</li>
-          <li>포도</li>
-          <li>감</li>
-        </ul>
-      </Hello>
     </>
   );
 }
