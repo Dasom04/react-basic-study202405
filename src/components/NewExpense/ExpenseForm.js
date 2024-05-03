@@ -38,7 +38,7 @@ const ExpenseForm = ({ onSaveExpense, onToggle }) => {
 
     const newExpense = {
       title: userInput.title,
-      price: userInput.price,
+      price: +userInput.price,
       date: new Date(userInput.date),
     };
 
@@ -87,7 +87,9 @@ const ExpenseForm = ({ onSaveExpense, onToggle }) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type='button' onClick={cancleInsertHandler} >Cancle</button>
+        <button type="button" onClick={cancleInsertHandler}>
+          Cancle
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

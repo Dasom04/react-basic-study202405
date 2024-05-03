@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 import Chart from '../Chart/Chart';
 
-const ExpenseChart = () => {
-
+const ExpenseChart = ({ expenses }) => {
   const chartDataPoints = [
     { label: 'Jan', value: 0 },
     { label: 'Feb', value: 0 },
@@ -18,8 +17,17 @@ const ExpenseChart = () => {
     { label: 'Dec', value: 0 },
   ];
 
-  return <Chart dataPoints={chartDataPoints} />;
-    
-}
+  // 선택년도의 모든 지출 데이터를 꺼내서 원을 추출하면서
+  // 해당 월의 지출총액을 chartDataPoints의 월 value에 누적.
+  expenses.forEach((exp) => {
+    // 이 월 정보는 실제 월에서 1이 감소되어 있다.
+    // 오히려 인덱스를 지목하기가 좋아짐.
+    const expenseMonth = exp.date.getMonth();
+    const expensePrice = exp.price;
 
-export default ExpenseChart
+    chartDataPoints[expenseMonth].value += expensePrice;
+  });
+  return <Chart dataPoints={chartDataPoints} />;
+};
+
+export default ExpenseChart;
