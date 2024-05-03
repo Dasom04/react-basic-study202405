@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import Button from '../UI/Button/Button';
 import styles from './AddUsers.module.css';
 import Card from '../UI/Card';
+import ErrorModal from '../UI/Modal/ErrorModal';
 
 const AddUsers = () => {
-  const userSubmitHandler = (e) => {};
-
   const [userValue, setUserValue] = useState({
     userName: '',
     age: '',
@@ -14,7 +13,7 @@ const AddUsers = () => {
   // 에러 상태 관리
   const [error, setError] = useState(null);
 
-  const userNameChangehandler = (e) => {
+  const userNameChangeHandler = (e) => {
     setUserValue((prevUserValue) => {
       return {
         ...prevUserValue,
@@ -23,7 +22,7 @@ const AddUsers = () => {
     });
   };
 
-  const ageChangehandler = (e) => {
+  const ageChangeHandler = (e) => {
     setUserValue((prevUserValue) => {
       return {
         ...prevUserValue,
@@ -69,12 +68,12 @@ const AddUsers = () => {
         />
       )}
       <Card className={styles.input}>
-        <form className={styles.input}>
+        <form onSubmit={userSubmitHandler}>
           <label htmlFor="username">이름</label>
           <input
             id="username"
             type="text"
-            onChange={userNameChangehandler}
+            onChange={userNameChangeHandler}
             value={userValue.userName}
           />
           <label htmlFor="age">나이</label>

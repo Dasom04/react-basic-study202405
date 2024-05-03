@@ -17,7 +17,7 @@ const ExpenseChart = ({ expenses }) => {
     { label: 'Dec', value: 0 },
   ];
 
-  // 선택년도의 모든 지출 데이터를 꺼내서 원을 추출하면서
+  // 선택년도의 모든 지출 데이터를 꺼내서 월을 추출하면서
   // 해당 월의 지출총액을 chartDataPoints의 월 value에 누적.
   expenses.forEach((exp) => {
     // 이 월 정보는 실제 월에서 1이 감소되어 있다.
@@ -27,6 +27,9 @@ const ExpenseChart = ({ expenses }) => {
 
     chartDataPoints[expenseMonth].value += expensePrice;
   });
+
+  console.log(chartDataPoints);
+
   return <Chart dataPoints={chartDataPoints} />;
 };
 

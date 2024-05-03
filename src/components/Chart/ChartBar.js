@@ -1,11 +1,11 @@
 import React from 'react';
 import './ChartBar.css';
 
-const ChartBar = ({ label, currnetValue, totalValue }) => {
+const ChartBar = ({ label, currentValue, totalValue }) => {
   let barFillHeight = '0%';
 
   if (totalValue > 0) {
-    const percentage = (currnetValue / totalValue) * 100;
+    const percentage = (currentValue / totalValue) * 100;
     barFillHeight = percentage + '%';
   }
 

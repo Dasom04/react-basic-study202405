@@ -52,7 +52,7 @@ const ExpenseForm = ({ onSaveExpense, onToggle }) => {
     });
   };
 
-  const cancleInsertHandler = () => onToggle();
+  const cancelInsertHandler = () => onToggle();
 
   return (
     <form onSubmit={formSubmitHandler}>
