@@ -4,10 +4,10 @@ import styles from './Home.module.css';
 
 const Home = () => {
   return (
-    <Card className={style.home}> 
-    <h1>Welcome Back!</h1>
+    <Card className={styles.home}>
+      <h1>Welcome Back!</h1>
     </Card>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
