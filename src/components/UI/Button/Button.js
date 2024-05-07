@@ -1,6 +1,6 @@
 import React from 'react';
 // import styled from 'styled-components';
-import styls from './Button.module.css';
+import styles from './Button.module.css';
 
 // const Button = styled.button`
 //   font: inherit;

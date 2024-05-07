@@ -12,11 +12,10 @@ const AddUsers = () => {
   const nameInput = useRef();
   const ageInput = useRef();
 
-
   const userSubmitHandler = (e) => {
     e.preventDefault();
 
-    console.log(nameInput.current);
+    console.log(nameInput);
 
     const userName = nameInput.current.value;
     const age = ageInput.current.value;
@@ -54,17 +53,9 @@ const AddUsers = () => {
       <Card className={styles.input}>
         <form onSubmit={userSubmitHandler}>
           <label htmlFor="username">이름</label>
-          <input
-            id="username"
-            type="text"
-            ref={nameInput}
-          />
+          <input id="username" type="text" ref={nameInput} />
           <label htmlFor="age">나이</label>
-          <input
-            id="age"
-            type="number"
-            ref={ageInput}
-          />
+          <input id="age" type="number" ref={ageInput} />
           <Button type="submit">가입하기</Button>
         </form>
       </Card>
