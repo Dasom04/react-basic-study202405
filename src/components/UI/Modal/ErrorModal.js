@@ -26,8 +26,8 @@ const ModalOverlay = ({ title, message, onConfirm }) => {
   );
 };
 
-// Modal을 사용하는 쪽에서 모달 제목과 메세지가 props로 전달된 것이다.
-// onConfirm -> AddUsers 쪽에서 상대 관리하고 있는 모달 노출 여부를 제어하는 함수.
+// Modal을 사용하는 쪽에서 모달 제목과 메세지가 props로 전달될 것이다.
+// onConfirm -> AddUsers 쪽에서 상태 관리하고 있는 모달 노출 여부를 제어하는 함수.
 const ErrorModal = ({ title, message, onConfirm }) => {
   return (
     <>
