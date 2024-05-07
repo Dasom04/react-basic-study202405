@@ -22,11 +22,28 @@ const Login = ({ onLogin }) => {
   const passwordChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
 
-    // 입력갘 (이메일, 비미럱호)을 모두 체크하며 from의 버튼 disavled를 헤재하는
+    // 입력란 (이메일, 비미럱호)을 모두 체크하며 from의 버튼 disavled를 헤재하는
     // 상태변수 fromIsVolid의 사이드 이팩트 차리하는 영역
     useEffect(() => {
-      console.log('useEffect called on login.js!');
-    });
+      // fromIsVolid의 유효성 검증을 일부러 1초 뒤에 실행 하도록 setTimeout을 사용.
+      // 1초 이내에 새로운 입력값이 들어옴 -> 상태 변경 -> 재 렌더링이 진행되면서 useEffect가 또 호출 됨.
+
+      const timer = setTimeout(() => {
+        console.log('useEffect called on Login.js!');
+        setFormIsValid(
+          enteredEmail.includes('@') && enteredPassword.trim().length > 6,
+        );
+      }, 1000);
+
+      // cleanup 함수 - 컴포넌트가 업데이트 되거나 없어지기 직전에 실행.
+      // 사용자가 1초 이내에 추가 입력 -> 상태 변경 -> 위에 예약한 timer를 취소하자.
+      return () => {
+        console.log('clean-up!');
+        clearTimeout(timer);
+      };
+
+      // 의존성 배열에 상태변수를 넣어주면 그 상태변수가 바뀔 때 마다 useEffect가 재실행됨.
+    }, [enteredEmail, enteredPassword]);
 
     setFormIsValid(
       e.target.value.trim().length > 6 && enteredEmail.includes('@'),
