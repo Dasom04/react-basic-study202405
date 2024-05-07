@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from '../Navigation/Navidation';
+import Navigation from '../Navigation/Navigation';
 import classes from './MainHeader.module.css';
 
 const MainHeader = () => {

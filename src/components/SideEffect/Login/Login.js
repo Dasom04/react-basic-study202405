@@ -1,8 +1,9 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import Card from '../../UI/Card';
 import styles from './Login.module.css';
 import Button from '../../UI/Button/Button';
-import { type } from '@testing-library/user-event/dist/type';
+import AuthContext from '../../store/auth-context';
+import Input from '../../UI/Input/Input';
 
 // 리듀서 함수 선언
 /*
@@ -16,7 +17,7 @@ import { type } from '@testing-library/user-event/dist/type';
 */
 
 const emailReducer = (state, action) => {
-  // dispatch 함수가 전달한 액션 객체의 타입에 딸 변경할 상태 값을 반환.
+  // dispatch 함수가 전달한 액션 객체의 타입에 따라 변경할 상태 값을 반환.
   if (action.type === 'USER_INPUT') {
     return {
       value: action.val,
@@ -44,7 +45,8 @@ const passwordReducer = (state, action) => {
   }
 };
 
-const Login = ({ onLogin }) => {
+const Login = () => {
+  const { onLogin } = useContext(AuthContext);
   // email reducer 사용하기
   /*
     param1 - reducer function: 위에서 만든 리듀서 함수
@@ -65,20 +67,20 @@ const Login = ({ onLogin }) => {
   // 이메일, 패스워드가 둘 다 동시에 정상적인 상태인지 확인
   const [formIsValid, setFormIsValid] = useState(false);
 
-  // 기존의 email 상태 변수 제거함.
-  // 상태값이 필요하다면, reducer에서 제공되는 상태값을 활용.
+  // 기존의 email 상태 변수를 제거함.
+  // 상태값이 필요하다면 -> reducer에서 제공되는 상태값을 활용.
   // emailState에서 isValid 프로퍼티를 디스트럭처링함 (프로퍼티로 바로 사용 x)
   const { isValid: emailIsValid } = emailState;
   const { isValid: pwIsValid } = pwState;
 
-  // 입력란 (이메일, 비밀번호)을 모두 체크하며 from의 버튼 disavled를 해재하는
-  // 상태변수 fromIsVolid의 사이드 이팩트 차리하는 영역
+  // 입력란 (이메일, 비밀번호)을 모두 체크하여 form의 버튼 disabled를 해제하는
+  // 상태변수 formIsValid의 사이드 이펙트를 처리하는 영역
   useEffect(() => {
-    // fromIsVolid의 유효성 검증을 일부러 1초 뒤에 실행 하도록 setTimeout을 사용.
+    // formIsValid의 유효성 검증을 일부러 1초 뒤에 실행 하도록 setTimeout를 사용.
     // 1초 이내에 새로운 입력값이 들어옴 -> 상태 변경 -> 재 렌더링이 진행되면서 useEffect가 또 호출 됨.
 
     const timer = setTimeout(() => {
-      console.log('useEffect called on Login.js!');
+      console.log('useEffect called in Login.js!');
       setFormIsValid(emailIsValid && pwIsValid);
     }, 1000);
 
@@ -133,9 +135,10 @@ const Login = ({ onLogin }) => {
           className={`${styles.control} ${!emailIsValid ? styles.invalid : ''}`}
         >
           <label htmlFor="email">E-Mail</label>
-          <input
+          <Input
             type="email"
             id="email"
+            label="E-mail"
             value={emailState.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
@@ -145,9 +148,10 @@ const Login = ({ onLogin }) => {
           className={`${styles.control} ${!pwIsValid ? styles.invalid : ''}`}
         >
           <label htmlFor="password">Password</label>
-          <input
+          <Input
             type="password"
             id="password"
+            label="Password"
             value={pwState.value}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
