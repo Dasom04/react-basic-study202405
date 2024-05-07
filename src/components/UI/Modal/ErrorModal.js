@@ -32,12 +32,12 @@ const ModalOverlay = ({ title, message, onConfirm }) => {
 const ErrorModal = ({ title, message, onConfirm }) => {
   return (
     <>
-      <Portal destId='backdrop-root'>
+      <Portal destId="backdrop-root">
         <BackDrop onConfirm={onConfirm} />
       </Portal>
 
-      <Portal onConfirm='overlay-root' >
-      <ModalOverlay title={title} message={message} onConfirm={onConfirm} />,
+      <Portal destId="overlay-root">
+        <ModalOverlay title={title} message={message} onConfirm={onConfirm} />
       </Portal>
     </>
   );
