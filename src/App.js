@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import MainHeader from './components/Side Ifect/MainHeader/MainHeader';
 import Login from './components/Side Ifect/Login/Login';
 import Home from './components/Side Ifect/Home/Home';
+import AuthContext from './components/store/auth-context';
 
 const App = () => {
   console.log('App 컴포넌트 실행!');
@@ -39,15 +40,18 @@ const App = () => {
     setIsLoggedIn(false);
   };
 
-  console.log('App 컴포넌트의 끝!');
   return (
-    <>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+      }}
+    >
+      <MainHeader onLogout={logoutHandler} />
       <main>
         {isLoggedIn && <Home />}
         {!isLoggedIn && <Login onLogin={loginHandler} />}
       </main>
-    </>
+    </AuthContext.Provider>
   );
 };
 
