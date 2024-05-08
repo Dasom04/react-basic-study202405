@@ -4,6 +4,7 @@ import { type } from '@testing-library/user-event/dist/type';
 
 const defaultState = {
   items: [],
+  totalPrice: 0,
 };
 
 // 리듀서 함수 정의: 여러가지 복잡한 상태관리를 중앙 집중화
@@ -16,9 +17,13 @@ const cartReducer = (state, action) => {
     const updatedItem = [...state.items, action.itme];
     console.log(updatedItem);
 
+    const updatedPrice =
+      state.totalPrice + action.item.price * action.itme.amount;
+
     // 변경된 상태를 객체 형태로 리턴 -> cartState로 전달됨.
     return {
       items: updatedItem,
+      totalPrice: updatedPrice,
     };
   } else if (action.type === 'REMOVE') {
     // 지우려고하는 항목의 id와 일치하지 않는 항목들만 따로 배열로 받아서 리턴. (filter)
@@ -39,6 +44,7 @@ const CartProvider = ({ children }) => {
   // Provider의 value는 실제로 관리할 데이터 객체. (consumer들이 사용할 객체를 정의)
   const cartContext = {
     items: cartState.items, // 장바구니에 담긴 항목 배열
+    totalPrice: cartState.totalPrice,
     addItem: (item) => {
       // dispatch 함수는 반드시 무슨 액션을 할 것인지, 액션에 필요한 값을 전달.
       dispatchCartAction({
