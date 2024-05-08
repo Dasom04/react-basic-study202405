@@ -1,4 +1,4 @@
-$my-ornage: #fbaa30;
+$my-orange: #fbaa30;
 
 .header {
   position: fixed;
@@ -23,11 +23,10 @@ $my-ornage: #fbaa30;
   overflow: hidden;
 
   img {
-  width: 110%;
-  height: 100%;
-  object-fit: cover;
-  transform: rotate(-5deg) translateY(-4rem) translateX(-1rem);
+    width: 110%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(-5deg) translateY(-4rem)
+      translateX(-1rem);
   }
-
 }
-
