@@ -14,7 +14,7 @@ const ModalOverlay = ({ children }) => {
   );
 };
 
-const CratModal = ({ children, onClose }) => {
+const CartModal = ({ children, onClose }) => {
   return (
     <>
       <Portal destId="backdrop-root">
@@ -27,4 +27,4 @@ const CratModal = ({ children, onClose }) => {
   );
 };
 
-export default CratModal;
+export default CartModal;

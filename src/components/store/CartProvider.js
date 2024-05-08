@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
-import CartContext from './Cart-context';
-import { type } from '@testing-library/user-event/dist/type';
+import CartContext from './cart-context';
 
 const defaultState = {
   items: [],
@@ -19,7 +18,7 @@ const cartReducer = (state, action) => {
     // findIndex: 콜백을 통해 배열을 순회하면서 지정한 조건에 맞는 요소의 인덱스를 반환.
     const index = state.items.findIndex(
       // 기존 상태 배열의 id를 하나씩 얻어서 현재 추가하고자 하는 상품의 id와 같은 요소의 인덱스 반환.
-      (itme) => itme.id === newCartItem.id,
+      (item) => item.id === newCartItem.id,
     );
 
     // 기존 카트 아이템
@@ -32,7 +31,7 @@ const cartReducer = (state, action) => {
       // 신규 아이템
       updatedItem = [...state.items, newCartItem];
     } else {
-      // 이미 추가가 됐던 아이템 -> 수량을 1 올려주면 되겠구나.
+      // 이미 추가가 됐던 아이템 -> 수량을 1 올려주면 되겠구나. (모달 안에서만 유효)
       // prevCartItem.amount ++; (X) -> 바깥 화면에서는 상품이 꼭 하나씩만 올라가는 것은 아님!
       prevCartItem.amount += newCartItem.amount;
       updatedItem = [...existingItem]; // 새롭게 복사 배열을 갱신.
@@ -51,7 +50,7 @@ const cartReducer = (state, action) => {
     const removedItem = state.items.filter((item) => item.id !== action.id);
 
     return {
-      items: removedItem, // 최신 상태로 상태를 업그레이드 -> cartState로 전달됨.
+      items: removedItem, // 최신 상태로 상태를 업데이트 -> cartState로 전달됨.
     };
   }
 

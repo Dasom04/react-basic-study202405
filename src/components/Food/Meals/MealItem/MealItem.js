@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './MealItem.module.scss';
 import MealItemForm from './MealItemForm';
-import CartContext from '../../../store/Cart-context';
+import CartContext from '../../../store/cart-context';
 
 const MealItem = ({ id, price, description, name }) => {
   // context에서 필요한 데이터 or 함수를 소비하기 위해 꺼내기.
@@ -11,13 +11,13 @@ const MealItem = ({ id, price, description, name }) => {
 
   // MealItemForm에게 넘길 함수 -> 수량 받아와야 해요.
   const addToCartHandler = (amount) => {
-    const itme = {
-      id: id,
-      name: name,
+    const item = {
+      id,
+      name,
       price: +price,
       amount: +amount,
     };
-    addItem(itme);
+    addItem(item);
   };
 
   const { meal, description: desc, price: priceStyle } = styles;

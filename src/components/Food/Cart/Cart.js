@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './Cart.module.scss';
-import CratModal from '../../UI/Modal/CratModal';
-import CartContext from '../../store/Cart-context';
+import CartModal from '../../UI/Modal/CartModal';
+import CartContext from '../../store/cart-context';
 import CartItem from './CartItem';
 
 const DUMMY_CART = [
@@ -21,7 +21,7 @@ const DUMMY_CART = [
 
 const Cart = ({ onClose }) => {
   const {
-    'cart-itms': cartItemStyle,
+    'cart-items': cartItemStyle,
     total,
     actions,
     'button--alt': btnAlt,
@@ -31,13 +31,11 @@ const Cart = ({ onClose }) => {
   const { items, totalPrice } = useContext(CartContext);
 
   return (
-    <CratModal onClose={onClose}>
+    <CartModal onClose={onClose}>
       {/* 주문 내역 (카트안의 음식 내역)*/}
       <ul className={cartItemStyle}>
         {items.map((cartItem) => {
-          return (
-            <CartItem key={cartItem.id} name={cartItem.name} cart={cartItem} />
-          );
+          return <CartItem key={cartItem.id} cart={cartItem} />;
         })}
       </ul>
       <div className={total}>
@@ -50,7 +48,7 @@ const Cart = ({ onClose }) => {
         </button>
         <button className={button}>주문</button>
       </div>
-    </CratModal>
+    </CartModal>
   );
 };
 
