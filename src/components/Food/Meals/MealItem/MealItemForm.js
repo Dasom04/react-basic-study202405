@@ -16,6 +16,7 @@ const MealItemForm = ({ id, onAddToCart }) => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     onAddToCart(amount); // 해당 컴포넌트가 기억하고있는 수량 상태값을 넘김.
+    setAmount(1); // 담기 버튼 누르면 1로 돌아가게 한다.
   };
 
   return (
@@ -29,7 +30,7 @@ const MealItemForm = ({ id, onAddToCart }) => {
           min: '1',
           max: '5',
           step: '1',
-          defaultValue: '1',
+          value: amount, // 담기를 누르면 1로 돌아가게 한다.
         }}
       />
       <button>담기</button>
