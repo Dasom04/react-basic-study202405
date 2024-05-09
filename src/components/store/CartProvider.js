@@ -63,7 +63,7 @@ const cartReducer = (state, action) => {
     const delTargetItem = existingItem[index];
 
     // 총액 계산
-    const updatedPrice = state.totalPrice.price;
+    const updatedPrice = state.totalPrice - delTargetItem.price;
 
     // 업데이트 전의 수량이 1이었다면, filter를 이용해서 카트에서 아예 빼 버리는것이 맞다.
     // 근데, 1보다 크다면 filter로 제거하면 안되고,
@@ -72,12 +72,12 @@ const cartReducer = (state, action) => {
     if (delTargetItem.amount === 1) {
       removedItems = state.items.filter((item) => item.id !== action.id);
     } else {
-      delTargetItem.amount--; // 수량은 무조건 1개씩 빼기때문에.
+      --delTargetItem.amount; // 수량은 무조건 1개씩 빼기때문에.
       removedItems = [...existingItem];
     }
 
     return {
-      item: removedItems,
+      items: removedItems,
       totalPrice: updatedPrice,
     };
   }
